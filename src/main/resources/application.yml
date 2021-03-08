@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: sharding-jdbc-demo
+  profiles:
+    active:
+  datasource:
+    druid:
+      filters: stat,wall,log4j2
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    # use-generated-keys: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+
+datasource0:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  type: com.alibaba.druid.pool.DruidDataSource
+  url: jdbc:mysql://localhost:3306/sharding-jdbc1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+  username: root
+  password: wk123456
+datasource1:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  type: com.alibaba.druid.pool.DruidDataSource
+  url: jdbc:mysql://localhost:3306/sharding-jdbc2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+  username: root
+  password: wk123456
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
