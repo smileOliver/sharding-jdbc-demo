@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author wangkuan
+ */
 @Data
 @TableName(value = "t_order")
 public class Order {

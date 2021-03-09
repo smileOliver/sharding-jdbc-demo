@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: sharding-jdbc-demo
-  profiles:
-    active:
   datasource:
     druid:
       filters: stat,wall,log4j2

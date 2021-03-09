@@ -7,6 +7,8 @@ import java.util.Random;
 
 /**
  * 订单号生成工具
+ *
+ * @author wangkuan
  */
 public class OrderCodeFactory {
     /**
