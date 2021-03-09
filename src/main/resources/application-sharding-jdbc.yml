@@ -1,67 +1,79 @@
-dataSources:
-  ds0: !!com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sharding-jdbc1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: wk123456
-  ds1: !!com.alibaba.druid.pool.dDruidDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sharding-jdbc2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: wk123456
-shardingRule:
-  tables:
-    user:
-      actualDataNodes: ds${0..1}.user${0..2}
-      databaseStrategy:
-        inline:
-          shardingColumn: id
-          algorithmExpression: ds_${id % 2}
-      keyGenerator:
+spring:
+  #分库分表配置
+  shardingsphere:
+    datasource:
+      #多个用英文逗号隔开
+      names: ds0,ds1
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-jdbc1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: wk123456
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sharding-jdbc2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: wk123456
+    sharding:
+      tables:
+        #用户表 逻辑表名
+        user:
+          #真实表 ds0.user_0
+          actualDataNodes: ds$->{0..1}.user_$->{0..2}
+          #对应的逻辑表
+          logicTable: user
+          #分库策略
+          databaseStrategy:
+            inline:
+              shardingColumn: id
+              algorithmExpression: ds$->{id % 2}
+          #分表规则
+          tableStrategy:
+            inline:
+              #分片算法行表达式，需符合groovy语法
+              algorithmExpression: user_$->{id % 3}
+              shardingColumn: id
+          #分布式id
+          keyGenerator:
+            column: id
+            type: SNOWFLAKE
+        t_order:
+          actualDataNodes: ds$->{0..1}.t_order_$->{0..3}
+          databaseStrategy:
+            inline:
+              algorithmExpression: ds$->{user_id % 2}
+              shardingColumn: order_id
+          logicTable: t_order
+          tableStrategy:
+            inline:
+              algorithmExpression: t_order_$->{order_id % 4}
+              shardingColumn: order_id
+          keyGenerator:
+            column: order_id
+            type: SNOWFLAKE
+        order_item:
+          actualDataNodes: ds$->{0..1}.order_item_$->{0..3}
+          databaseStrategy:
+            inline:
+              algorithmExpression: ds$->{user_id % 2}
+              shardingColumn: order_id
+          logicTable: order_item
+          tableStrategy:
+            inline:
+              algorithmExpression: order_item_$->{order_id % 4}
+              shardingColumn: order_id
+      #绑定关系表
+      binding-tables:
+        - t_order,order_item
+      #广播表
+      broadcastTables:
+        - user_config
+      #默认使用雪花算法生成分布式ID
+      default-key-generator:
         column: id
         type: SNOWFLAKE
-      tableStrategy:
-        inline:
-          algorithmExpression: user_${id % 3}
-          shardingColumn: id
-
-    t_order:
-      actualDataNodes: ds_${0..1}.t_order_${0..3}
-      databaseStrategy:
-        inline:
-          algorithmExpression: ds_${user_id % 2}
-          shardingColumn: order_id
-      keyGenerator:
-        column: order_id
-        type: SNOWFLAKE
-      logicTable: t_order
-      tableStrategy:
-        inline:
-          algorithmExpression: t_order_${order_id % 4}
-          shardingColumn: order_id
-    order_item:
-      actualDataNodes: ds_${0..1}.order_item_${0..3}
-      databaseStrategy:
-        inline:
-          algorithmExpression: ds_${user_id % 2}
-          shardingColumn: user_id
-      logicTable: order_item
-      tableStrategy:
-        inline:
-          algorithmExpression: order_item_${order_id % 4}
-          shardingColumn: order_id
-  bindingTables:
-    - user
-    - order,order_item
-  broadcastTables:
-    - user_config
-  defaultDataSourceName: ds0
-  defaultKeyGenerator:
-    type: SNOWFLAKE
-    column: id
-  defaultDatabaseStrategy:
-    none:
-  defaultTableStrategy:
-    none:
-props:
-  sql.show: true
+    props:
+      #日志显示SQL
+      sql.show: true

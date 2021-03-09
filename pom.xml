@@ -19,8 +19,11 @@
         <snakeyaml.version>1.27</snakeyaml.version>
         <commons-lang3.version>3.11</commons-lang3.version>
         <commons-io.version>2.7</commons-io.version>
+        <swagger.core.version>1.5.22</swagger.core.version>
         <sharding-sphere.version>4.1.1</sharding-sphere.version>
         <nacos.version>1.0.0</nacos.version>
+        <dynamic-datasource.version>3.2.1</dynamic-datasource.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
     </properties>
     <dependencies>
         <dependency>
@@ -41,17 +44,7 @@
         <!--sharding jdbc begin-->
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
-            <version>${sharding-sphere.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-orchestration</artifactId>
-            <version>${sharding-sphere.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-orchestration-center-zookeeper-curator</artifactId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>${sharding-sphere.version}</version>
         </dependency>
 
@@ -71,7 +64,12 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>${dynamic-datasource.version}</version>
         </dependency>
         <!--mybatis end-->
         <!--druid begin-->
@@ -146,6 +144,12 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>${snakeyaml.version}</version>
+        </dependency>
+        <!--swagger 依赖-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.core.version}</version>
         </dependency>
     </dependencies>
 
