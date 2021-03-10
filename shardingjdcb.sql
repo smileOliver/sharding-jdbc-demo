@@ -73,15 +73,6 @@ CREATE TABLE `warehouse`
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8mb4 COMMENT ='仓库信息表';
 
-CREATE TABLE `hint_table`
-(
-    `id`           bigint(20)  NOT NULL AUTO_INCREMENT,
-    `hit_name`     varchar(64) NOT NULL COMMENT 'hint名称',
-    `gmt_create`   datetime             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `gmt_modified` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8mb4 COMMENT ='hint测试表';
+
 
 

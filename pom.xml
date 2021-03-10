@@ -48,17 +48,6 @@
             <version>${sharding-sphere.version}</version>
         </dependency>
 
-        <!--若使用nacos, 请加入下面Maven坐标-->
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-orchestration-center-nacos</artifactId>
-            <version>${sharding-sphere.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-spring-context</artifactId>
-            <version>${nacos.version}</version>
-        </dependency>
         <!--sharding jdbc  end-->
         <!--mybatis begin-->
         <dependency>

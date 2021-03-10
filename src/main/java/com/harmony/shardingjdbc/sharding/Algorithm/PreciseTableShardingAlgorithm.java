@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 /**
- * @describe 精确分片算法 --非通用 根据实际需要定制开发自己的分片算法
+ * @describe 精确分片算法
  * @author: wangkuan
  * @create: 2021-03-10 10:00:14
  **/

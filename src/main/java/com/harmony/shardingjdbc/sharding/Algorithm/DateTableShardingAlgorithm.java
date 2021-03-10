@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
- * @describe 精确分片算法，用于=和IN  按月分表
+ * @describe 精确分片算法 按月分表
  * @author: wangkuan
  * @create: 2021-03-08 16:35:16
  **/
