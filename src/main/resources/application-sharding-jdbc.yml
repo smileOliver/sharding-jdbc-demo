@@ -16,23 +16,26 @@ spring:
         url: jdbc:mysql://localhost:3306/sharding-jdbc2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: root
         password: wk123456
+    #配置分库分表规则
     sharding:
       tables:
         #用户表 逻辑表名
         user:
-          #真实表 ds0.user_0
+          #真实表 ds0.user_0 其中..代表连续的意思，如果非连续的可以使用英文逗号分割
           actualDataNodes: ds$->{0..1}.user_$->{0..2}
           #对应的逻辑表
           logicTable: user
           #分库策略
           databaseStrategy:
+            #行表达式策略 需符合groovy语法
             inline:
+              #分片列名称
               shardingColumn: id
+              #分片算法行表达式
               algorithmExpression: ds$->{id % 2}
           #分表规则
           tableStrategy:
             inline:
-              #分片算法行表达式，需符合groovy语法
               algorithmExpression: user_$->{id % 3}
               shardingColumn: id
           #分布式id
@@ -44,12 +47,27 @@ spring:
           databaseStrategy:
             inline:
               algorithmExpression: ds$->{user_id % 2}
-              shardingColumn: order_id
+              shardingColumn: user_id
           logicTable: t_order
           tableStrategy:
-            inline:
-              algorithmExpression: t_order_$->{order_id % 4}
+            #标准分片算法 SQL 语句中有>，>=, <=，<，=，IN 和 BETWEEN AND 操作符，都可以应用此分片策略
+            standard:
+              #精确分片算法类名称
+              preciseAlgorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.PreciseTableShardingAlgorithm
               shardingColumn: order_id
+              #范围分片算法类名称，用于BETWEEN，可选
+              #rangeAlgorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.RangeTableShardingAlgorithm
+              #Hint分片策略
+              #hint:
+              #Hint分片算法类名称
+              #algorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.HintTableShardingAlgorithm
+              #complex:
+              #分片列名称，多个列以逗号分隔
+              #shardingColumns: user_id,order_id
+              #复合分片算法类名称。该类需实现ComplexKeysShardingAlgorithm接口并提供无参数的
+              #algorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.RangeTableShardingAlgorithm
+
+
           keyGenerator:
             column: order_id
             type: SNOWFLAKE
@@ -58,7 +76,7 @@ spring:
           databaseStrategy:
             inline:
               algorithmExpression: ds$->{user_id % 2}
-              shardingColumn: order_id
+              shardingColumn: user_id
           logicTable: order_item
           tableStrategy:
             inline:

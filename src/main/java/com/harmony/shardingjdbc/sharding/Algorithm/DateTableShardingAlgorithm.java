@@ -1,10 +1,11 @@
 package com.harmony.shardingjdbc.sharding.Algorithm;
 
 import cn.hutool.core.date.DateUtil;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Date;
@@ -14,8 +15,9 @@ import java.util.Date;
  * @author: wangkuan
  * @create: 2021-03-08 16:35:16
  **/
+@Service
 public class DateTableShardingAlgorithm implements PreciseShardingAlgorithm<Date> {
-    private final Logger logger = LogManager.getLogger(DateTableShardingAlgorithm.class);
+    private final Logger logger = LoggerFactory.getLogger(DateTableShardingAlgorithm.class);
 
     @Override
     public String doSharding(Collection<String> tableNames, PreciseShardingValue<Date> shardingValue) {
@@ -29,7 +31,7 @@ public class DateTableShardingAlgorithm implements PreciseShardingAlgorithm<Date
                 }
             }
         }
-        throw new IllegalArgumentException();
+        throw new UnsupportedOperationException();
     }
 
 }

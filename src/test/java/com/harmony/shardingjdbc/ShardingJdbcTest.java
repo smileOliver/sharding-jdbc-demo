@@ -1,8 +1,10 @@
 package com.harmony.shardingjdbc;
 
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.harmony.shardingjdbc.entity.*;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @SpringBootTest
 class ShardingJdbcTest {
@@ -85,15 +88,21 @@ class ShardingJdbcTest {
     @Test
     public void insertWarehouseTest() {
         Warehouse warehouse = new Warehouse();
-        warehouse.setWarehouseCode("CS_ZHONGTUO_03");
-        warehouse.setWarehouseName("长沙中拓3号仓");
+        warehouse.setWarehouseCode("CS_ZHONGTUO_" + DateUtil.beginOfSecond(new Date()));
+        warehouse.setWarehouseName("长沙中拓" + DateUtil.beginOfSecond(new Date()));
         warehouseService.save(warehouse);
     }
 
     @Test
+    public void deleteUserConfigTest() {
+        boolean flag = userConfigService.remove(Wrappers.<UserConfig>lambdaUpdate().eq(UserConfig::getName, "白居易"));
+        Assert.isTrue(flag, "删除失败");
+    }
+
+    @Test
     public void addOrderTest() {
-        Long userId = 13673925471609899L;
-        String userName = "皇阿玛";
+        Long userId = 13673925233236L;
+        String userName = "黄章";
         Order order = new Order();
         order.setUserId(userId);
         order.setOrderType(10);
