@@ -25,7 +25,7 @@ public class HintTableShardingAlgorithmTest {
 
     @Test
     public void test() {
-        //Hint分片算法必须使用HintManager工具类
+        //Hint分片算法必须使用HintManager工具类  该分片条件仅在当前线程内生效
         HintManager hintManager = HintManager.getInstance();
         hintManager.addTableShardingValue("t_order", 1);
         // 直接指定对应具体的数据库

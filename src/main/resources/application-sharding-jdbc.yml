@@ -21,7 +21,9 @@ spring:
       tables:
         #用户表 逻辑表名
         user:
-          #真实表 ds0.user_0 其中..代表连续的意思，如果非连续的可以使用英文逗号分割
+          #真实表 ds0.user_0
+          #${begin..end}表示范围区间
+          #${[unit1, unit2, unit_x]}表示枚举值
           actualDataNodes: ds$->{0..1}.user_$->{0..2}
           #对应的逻辑表
           logicTable: user

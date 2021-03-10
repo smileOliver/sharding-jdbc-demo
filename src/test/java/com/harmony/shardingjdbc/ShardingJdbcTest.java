@@ -36,7 +36,7 @@ class ShardingJdbcTest {
 
     @Test
     void insertUserTest() {
-        for (int i = 85; i < 90; i++) {
+        for (int i = 90; i < 100; i++) {
             User user = new User();
             user.setName("张牛" + i);
             user.setCityId(i);
@@ -66,7 +66,7 @@ class ShardingJdbcTest {
     @Test
     public void queryOne() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id", 1355508394484801537L);
+        queryWrapper.eq("id", 1367754367860625409L);
         User user = userService.getOne(queryWrapper);
         System.out.printf(JSONObject.toJSONString(user));
     }
@@ -74,8 +74,8 @@ class ShardingJdbcTest {
     @Test
     public void insertUserConfigTest() {
         UserConfig userConfig = new UserConfig();
-        userConfig.setUserId(2334234925L);
-        userConfig.setName("白居易");
+        userConfig.setUserId(2334223325L);
+        userConfig.setName("白居易22");
         userConfig.setContent("这是个配置信息");
         userConfig.setConfigDesc("描述一下");
         userConfigService.save(userConfig);
