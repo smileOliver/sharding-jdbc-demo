@@ -481,7 +481,7 @@ public class HintTableShardingAlgorithm implements HintShardingAlgorithm<Integer
 ```
 
  # FAQ
-注意：这里演示使用的创建时间、修改时间都是LocalDate类型，但是mybatis会调用BaseTypeHandler，会导致org.apache.ibatis.type.LocalDateTimeTypeHandler.getNullableResult(LocalDateTimeTypeHandler.java:38)抛出异常，所以对需要加一个LocalDateTime的转换类注册到TypeHandlerRegistry中
+注意：这里演示使用的创建时间、修改时间都是LocalDateTime类型，但是mybatis会调用BaseTypeHandler，会导致org.apache.ibatis.type.LocalDateTimeTypeHandler.getNullableResult(LocalDateTimeTypeHandler.java:38)抛出异常，所以对需要加一个LocalDateTime的转换类注册到TypeHandlerRegistry中
 ```
 /**
  * localDateTime转换类
