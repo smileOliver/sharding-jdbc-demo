@@ -20,7 +20,12 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 /**
- * @describe
+ * 动态数据源配置：
+ * <p>
+ * 使用{@link com.baomidou.dynamic.datasource.annotation.DS}注解，切换数据源
+ *
+ * <code>@DS(DataSourceConfiguration.SHARDING_DATA_SOURCE_NAME)</code>
+ *
  * @author: wangkuan
  * @create: 2021-03-08 16:00:22
  **/

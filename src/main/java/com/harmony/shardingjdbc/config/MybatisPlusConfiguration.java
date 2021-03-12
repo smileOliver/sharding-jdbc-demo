@@ -12,7 +12,6 @@ import com.harmony.shardingjdbc.intercepter.SqlLogInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.type.LocalDateTypeHandler;
 import org.apache.ibatis.type.LocalTimeTypeHandler;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -30,7 +29,6 @@ import java.time.LocalTime;
 @Configuration
 @ConditionalOnBean(DataSource.class)
 @AutoConfigureAfter(DataSourceAutoConfiguration.class)
-@MapperScan("com.github.dudiao.sharding.mapper")
 public class MybatisPlusConfiguration {
 
     /**

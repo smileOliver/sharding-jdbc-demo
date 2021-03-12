@@ -71,6 +71,9 @@ class ShardingJdbcTest {
         System.out.printf(JSONObject.toJSONString(user));
     }
 
+    /**
+     * 广播表测试
+     */
     @Test
     public void insertUserConfigTest() {
         UserConfig userConfig = new UserConfig();
@@ -99,6 +102,9 @@ class ShardingJdbcTest {
         Assert.isTrue(flag, "删除失败");
     }
 
+    /**
+     * 绑定关系表测试
+     */
     @Test
     public void addOrderTest() {
         Long userId = 13673925233236L;
