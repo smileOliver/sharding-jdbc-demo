@@ -1,4 +1,4 @@
-package com.harmony.shardingjdbc.sharding.Algorithm;
+package com.harmony.shardingjdbc.sharding.algorithm;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.Lists;

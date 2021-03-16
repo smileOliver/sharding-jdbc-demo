@@ -55,19 +55,19 @@ spring:
             #标准分片算法 SQL 语句中有>，>=, <=，<，=，IN 和 BETWEEN AND 操作符，都可以应用此分片策略
             standard:
               #精确分片算法类名称
-              preciseAlgorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.PreciseTableShardingAlgorithm
+              preciseAlgorithmClassName: com.harmony.shardingjdbc.sharding.algorithm.PreciseTableShardingAlgorithm
               shardingColumn: order_id
               #范围分片算法类名称，用于BETWEEN，可选
-              #rangeAlgorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.RangeTableShardingAlgorithm
+              #rangeAlgorithmClassName: com.harmony.shardingjdbc.sharding.algorithm.RangeTableShardingAlgorithm
               #Hint分片策略
               #hint:
               #Hint分片算法类名称
-              #algorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.HintTableShardingAlgorithm
+              #algorithmClassName: com.harmony.shardingjdbc.sharding.algorithm.HintTableShardingAlgorithm
               #complex:
               #分片列名称，多个列以逗号分隔
               #shardingColumns: user_id,order_id
               #复合分片算法类名称。该类需实现ComplexKeysShardingAlgorithm接口并提供无参数的
-              #algorithmClassName: com.harmony.shardingjdbc.sharding.Algorithm.RangeTableShardingAlgorithm
+              #algorithmClassName: com.harmony.shardingjdbc.sharding.algorithm.RangeTableShardingAlgorithm
 
 
           keyGenerator:

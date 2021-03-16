@@ -1,4 +1,4 @@
-package com.harmony.shardingjdbc.sharding.Algorithm;
+package com.harmony.shardingjdbc.sharding.algorithm;
 
 import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingValue;

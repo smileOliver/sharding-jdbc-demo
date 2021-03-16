@@ -1,4 +1,4 @@
-package com.harmony.shardingjdbc.sharding.Algorithm;
+package com.harmony.shardingjdbc.sharding.algorithm;
 
 import cn.hutool.core.date.DateUtil;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;

@@ -1,4 +1,4 @@
-package com.harmony.shardingjdbc.sharding.Algorithm;
+package com.harmony.shardingjdbc.sharding.algorithm;
 
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
